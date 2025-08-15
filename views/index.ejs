@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <img src="/logo.jpg" alt="Logo" class="center-img">
+        <h1>Welcome, URL Wizard!</h1>
+        <p>Paste your URL below:</p>
+
+        <form action="/shorten" method="POST">
+            <input type="text" name="originalUrl" placeholder="Enter URL here">
+            <button type="submit">Generate</button>
+        </form>
+
+        <% if (error) { %>
+            <p class="error"><%= error %></p>
+        <% } %>
+
+        <% if (shortUrl) { %>
+            <p>Your short URL: <a href="http://<%= shortUrl %>" target="_blank"><%= shortUrl %></a></p>
+            <a href="/analytics/<%= shortUrl.split('/').pop() %>"><button>Analytics</button></a>
+            <a href="/"><button>New URL</button></a>
+        <% } %>
+    </div>
+</body>
+</html>
